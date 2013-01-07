@@ -1,0 +1,92 @@
+#!/bin/bash
+set -e
+
+help () {
+    cat<<EOF
+
+Usage: quick-vim [install|uninstall|upgrade|help]
+
+Commands:
+
+    install    installs from the git repo
+    uninstall  restores original system vim config
+    upgrade    clobbers existing setup and installs fresh from git
+    help       print this msg
+
+EOF
+}
+
+# backs default home vim up
+backup () {
+    if [ -e ./backup ]
+    then 
+        echo 'skipping backup'
+    else
+        mkdir -p ./backup
+        mv ~/.vimrc ./backup/.vimrc
+        mv ~/.gvimrc ./backup/.gvimrc
+        mv ~/.vim ./backup/.vim
+    fi
+}
+
+# copy in pathogen and then clone in bundles
+install () {
+git submodule init
+git submodule update
+
+ls > bundles.txt
+
+    bundles=$(cat ./bundles.txt)
+
+    for template in $bundles; do
+   
+if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
+then
+echo  '~/Library/Developer/Xcode/Templates/File\ Templates/'$template' already
+exists'
+else
+echo  'Symlinking '$template
+ln -s $PWD/$template ~/Library/Developer/Xcode/Templates/File\ Templates/$template
+fi
+
+
+    done
+}
+
+# if backup exists clobbers home vim and copies in backup
+uninstall () {
+    if [ -e ./backup ]
+    then
+        rm ~/.vimrc
+        rm ~/.gvimrc
+        rm -rf ~/.vim
+        mv ./backup/.vimrc ~/.vimrc
+        mv ./backup/.gvimrc ~/.gvimrc
+        mv ./backup/.vim ~/.vim
+        rm -rf ./backup
+    fi
+}
+
+# kills everything, pulls latest from git, installs it
+upgrade () {
+    uninstall
+    git pull
+    install
+}
+
+# bash test for a valid arg and execute it if so; otherwise show the help
+if [ "$1" != "" ]; then
+    wl=(install uninstall upgrade help)
+    for i in "${wl[@]}"
+    do
+        if [ "$i" == "$1" ]
+        then
+            $1
+            exit 0
+        fi
+    done
+fi
+
+# show a flailer some help
+help
+exit 0
