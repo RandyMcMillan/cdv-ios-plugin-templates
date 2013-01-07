@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+readme () {
+
+open -a /Applications/Safari.app http://randymcmillan.github.com/cdv-ios-plugin-templates/
+
+}
+
 help () {
     cat<<EOF
 
@@ -8,16 +14,30 @@ Usage: quick-vim [install|uninstall|upgrade|help]
 
 Commands:
 
+$ ./installer install
+
     install    populates submodules and creates a symlink to the Xcode File
                Templates Folder
     
+$ ./installer uninstall
+
     uninstall  removes synlinks from Xcode File Templates Folder
     
+$ ./installer ungrade
+
     upgrade    clobbers existing setup and installs fresh from git
     
+$ ./installer help
+
     help       print this msg
 
+    NOTE       If you forked this repo I recommend understanding 
+               submodules.
+
 EOF
+
+open -a /Applications/Safari.app http://randymcmillan.github.com/cdv-ios-plugin-templates/
+
 }
 
 # copy in pathogen and then clone in bundles
@@ -65,7 +85,7 @@ uninstall () {
     
 }
 
-# kills everything, pulls latest from git, installs it
+# Removes symlinks, pulls latest from git, installs it
 upgrade () {
     uninstall
     git pull
@@ -74,7 +94,7 @@ upgrade () {
 
 # bash test for a valid arg and execute it if so; otherwise show the help
 if [ "$1" != "" ]; then
-    wl=(install uninstall upgrade help)
+    wl=(install uninstall upgrade readme help)
     for i in "${wl[@]}"
     do
         if [ "$i" == "$1" ]
@@ -87,4 +107,5 @@ fi
 
 # show some help
 help
+install
 exit 0
