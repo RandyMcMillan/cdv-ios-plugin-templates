@@ -8,9 +8,13 @@ Usage: quick-vim [install|uninstall|upgrade|help]
 
 Commands:
 
-    install    installs from the git repo
-    uninstall  restores original system vim config
+    install    populates submodules and creates a symlink to the Xcode File
+               Templates Folder
+    
+    uninstall  removes synlinks from Xcode File Templates Folder
+    
     upgrade    clobbers existing setup and installs fresh from git
+    
     help       print this msg
 
 EOF
@@ -81,6 +85,6 @@ if [ "$1" != "" ]; then
     done
 fi
 
-# show a flailer some help
+# show some help
 help
 exit 0
