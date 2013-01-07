@@ -16,19 +16,6 @@ Commands:
 EOF
 }
 
-# backs default home vim up
-backup () {
-    if [ -e ./backup ]
-    then 
-        echo 'skipping backup'
-    else
-        mkdir -p ./backup
-        mv ~/.vimrc ./backup/.vimrc
-        mv ~/.gvimrc ./backup/.gvimrc
-        mv ~/.vim ./backup/.vim
-    fi
-}
-
 # copy in pathogen and then clone in bundles
 install () {
 
@@ -64,25 +51,14 @@ uninstall () {
    
         if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
         then
+        
         rm ~/Library/Developer/Xcode/Templates/File\ Templates/$template
-            
         echo  'removing symlink to ~/Library/Developer/Xcode/Templates/File\ Templates/'$template'! '
-    
+
         fi
 
     done
     
-    
-    if [ -e ./backup ]
-    then
-        rm ~/.vimrc
-        rm ~/.gvimrc
-        rm -rf ~/.vim
-        mv ./backup/.vimrc ~/.vimrc
-        mv ./backup/.gvimrc ~/.gvimrc
-        mv ./backup/.vim ~/.vim
-        rm -rf ./backup
-    fi
 }
 
 # kills everything, pulls latest from git, installs it
