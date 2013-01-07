@@ -1,0 +1,12 @@
+[submodule "CDVTwitter"]
+	path = CDVTwitter
+	url = https://github.com/RandyMcMillan/CDVTwitter.git
+[submodule "CDVBrowser"]
+	path = CDVBrowser
+	url = https://github.com/RandyMcMillan/CDVBrowser.git
+[submodule "CDVPDFViewer"]
+	path = CDVPDFViewer
+	url = https://github.com/RandyMcMillan/CDVPDFViewer.git
+[submodule "CDVPlugin"]
+	path = CDVPlugin
+	url = https://github.com/RandyMcMillan/CDVPlugin.git
