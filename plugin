@@ -31,30 +31,48 @@ backup () {
 
 # copy in pathogen and then clone in bundles
 install () {
-git submodule init
-git submodule update
 
-ls > bundles.txt
+    git submodule init
+    git submodule update
+
+    ls > bundles.txt
 
     bundles=$(cat ./bundles.txt)
 
     for template in $bundles; do
    
-if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
-then
-echo  '~/Library/Developer/Xcode/Templates/File\ Templates/'$template' already
-exists'
-else
-echo  'Symlinking '$template
-ln -s $PWD/$template ~/Library/Developer/Xcode/Templates/File\ Templates/$template
-fi
-
+        if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
+        then
+        echo  '~/Library/Developer/Xcode/Templates/File\ Templates/'$template' already
+        exists'
+        else
+        echo  'Symlinking '$template
+        ln -s $PWD/$template ~/Library/Developer/Xcode/Templates/File\ Templates/$template
+        fi
 
     done
 }
 
 # if backup exists clobbers home vim and copies in backup
 uninstall () {
+
+    ls > bundles.txt
+
+    bundles=$(cat ./bundles.txt)
+
+    for template in $bundles; do
+   
+        if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
+        then
+        rm ~/Library/Developer/Xcode/Templates/File\ Templates/$template
+            
+        echo  'removing symlink to ~/Library/Developer/Xcode/Templates/File\ Templates/'$template'! '
+    
+        fi
+
+    done
+    
+    
     if [ -e ./backup ]
     then
         rm ~/.vimrc
