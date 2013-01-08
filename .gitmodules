@@ -13,3 +13,6 @@
 [submodule "CDVEmailComposer"]
 	path = CDVEmailComposer
 	url = https://github.com/RandyMcMillan/CDVEmailComposer.git
+[submodule "CDVSMSComposer"]
+	path = CDVSMSComposer
+	url = https://github.com/RandyMcMillan/CDVSMSComposer.git
