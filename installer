@@ -54,8 +54,7 @@ install () {
    
         if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
         then
-        echo  '~/Library/Developer/Xcode/Templates/File\ Templates/'$template' already
-        exists'
+        echo  '~/Library/Developer/Xcode/Templates/File\ Templates/'$template' already exists'
         else
         echo  'Symlinking '$template
         ln -s $PWD/$template ~/Library/Developer/Xcode/Templates/File\ Templates/$template
