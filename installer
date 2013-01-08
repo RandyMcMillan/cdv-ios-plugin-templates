@@ -10,33 +10,36 @@ open -a /Applications/Safari.app http://randymcmillan.github.com/cdv-ios-plugin-
 help () {
     cat<<EOF
 
-Usage: quick-vim [install|uninstall|upgrade|help]
+    Usage: quick-vim [install|uninstall|upgrade|help|readme]
 
-Commands:
+    Commands:
 
-$ ./installer install
+    $ ./installer install
 
     install    populates submodules and creates a symlink to the Xcode File
-               Templates Folder
-    
-$ ./installer uninstall
+    Templates Folder
+
+    $ ./installer uninstall
 
     uninstall  removes synlinks from Xcode File Templates Folder
-    
-$ ./installer ungrade
+
+    $ ./installer ungrade
 
     upgrade    clobbers existing setup and installs fresh from git
-    
-$ ./installer help
+
+    $ ./installer help
 
     help       print this msg
 
+    $ ./installer readme
+
+    readme     opens http://randymcmillan.github.com/cdv-ios-plugin-templates/
+    in Safari.app
+
     NOTE       If you forked this repo I recommend understanding 
-               submodules.
+    submodules.
 
 EOF
-
-open -a /Applications/Safari.app http://randymcmillan.github.com/cdv-ios-plugin-templates/
 
 }
 
@@ -106,7 +109,6 @@ fi
 
 # show some help
 help
-install
 exit 0
 
 
