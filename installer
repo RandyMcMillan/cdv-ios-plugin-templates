@@ -54,15 +54,30 @@ install () {
     bundles=$(cat ./bundles.txt)
 
     for template in $bundles; do
-   
-        if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
-        then
-        echo  '~/Library/Developer/Xcode/Templates/File\ Templates/'$template' already exists'
-        else
-        echo  'Symlinking '$template
-        ln -s $PWD/$template ~/Library/Developer/Xcode/Templates/File\ Templates/$template
-        fi
 
+
+
+
+            if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates ]
+            then
+                
+                echo 'exists'
+
+            else
+            
+                mkdir -p ~/Library/Developer/Xcode/Templates/File\ Templates
+                install
+            fi
+
+            
+                if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
+                then
+                echo  '~/Library/Developer/Xcode/Templates/File\ Templates/'$template' already exists'
+                else
+                echo  'Symlinking '$template
+                ln -s $PWD/$template ~/Library/Developer/Xcode/Templates/File\ Templates/$template
+                fi
+    
     done
 }
 
