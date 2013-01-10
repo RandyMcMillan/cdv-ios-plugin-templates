@@ -126,9 +126,3 @@ fi
 # show some help
 help
 exit 0
-
-
-#
-#  ___FILEBASENAME___
-#  ___FILEBASENAME___ Template Created Jan 7 2013
-#  Copyright 2013 @RandyMcMillan
