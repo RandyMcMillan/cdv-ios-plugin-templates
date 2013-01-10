@@ -3,7 +3,7 @@ set -e
 
 readme () {
 
-open -a /Applications/Safari.app http://randymcmillan.github.com/cdv-ios-plugin-templates/
+    open -a /Applications/Safari.app http://randymcmillan.github.com/cdv-ios-plugin-templates/
 
 }
 
@@ -36,9 +36,6 @@ help () {
     readme     opens http://randymcmillan.github.com/cdv-ios-plugin-templates/
     in Safari.app
 
-    NOTE       If you forked this repo I recommend understanding 
-    submodules.
-
 EOF
 
 }
@@ -46,37 +43,41 @@ EOF
 # copy in pathogen and then clone in bundles
 install () {
 
+    echo ' submodule init '
     git submodule init
+    echo ' submodule update --init --recursive '
     git submodule update --init --recursive
 
-    ls > bundles.txt
+    ls > submodules.txt
 
-    bundles=$(cat ./bundles.txt)
+    submodules=$(cat ./submodules.txt)
 
-    for template in $bundles; do
+    for template in $submodules; do
 
-
-
-
-            if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates ]
-            then
+        if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates ]
+        then
                 
-                echo 'exists'
+            echo 'exists ~/Library/Developer/Xcode/Templates/File\ Templates '
 
-            else
+        else
             
-                mkdir -p ~/Library/Developer/Xcode/Templates/File\ Templates
-                install
-            fi
+            mkdir -p ~/Library/Developer/Xcode/Templates/File\ Templates
+            install
+        
+        fi
 
             
-                if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
-                then
-                echo  '~/Library/Developer/Xcode/Templates/File\ Templates/'$template' already exists'
-                else
-                echo  'Symlinking '$template
-                ln -s $PWD/$template ~/Library/Developer/Xcode/Templates/File\ Templates/$template
-                fi
+        if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
+        then
+            
+            echo  '~/Library/Developer/Xcode/Templates/File\ Templates/'$template' already exists'
+        
+        else
+            
+            echo  'Symlinking '$template
+            ln -s $PWD/$template ~/Library/Developer/Xcode/Templates/File\ Templates/$template
+        
+        fi
     
     done
 }
@@ -84,11 +85,11 @@ install () {
 # if backup exists clobbers home vim and copies in backup
 uninstall () {
 
-    ls > bundles.txt
+    ls > submodules.txt
 
-    bundles=$(cat ./bundles.txt)
+    submodules=$(cat ./submodules.txt)
 
-    for template in $bundles; do
+    for template in $submodules; do
    
         if [ -e ~/Library/Developer/Xcode/Templates/File\ Templates/$template ]
         then
@@ -129,5 +130,5 @@ exit 0
 
 #
 #  ___FILEBASENAME___
-#  CDVEmailComposer Template Created Jan 7 2013
+#  ___FILEBASENAME___ Template Created Jan 7 2013
 #  Copyright 2013 @RandyMcMillan
