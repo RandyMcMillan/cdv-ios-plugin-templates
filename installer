@@ -80,6 +80,8 @@ install () {
         fi
     
     done
+
+    open ~/Library/Developer/Xcode/Templates/File\ Templates/
 }
 
 # if backup exists clobbers home vim and copies in backup
