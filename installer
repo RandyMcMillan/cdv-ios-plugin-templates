@@ -40,7 +40,7 @@ EOF
 
 }
 
-# copy in pathogen and then clone in bundles
+# populate submodules and create symlinks
 install () {
 
     echo ' submodule init '
