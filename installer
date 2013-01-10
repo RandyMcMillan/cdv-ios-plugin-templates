@@ -10,7 +10,7 @@ readme () {
 help () {
     cat<<EOF
 
-    Usage: quick-vim [install|uninstall|upgrade|help|readme]
+    Usage: installer [install|uninstall|upgrade|help|readme]
 
     Commands:
 
