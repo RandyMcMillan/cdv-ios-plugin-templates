@@ -23,7 +23,7 @@ help () {
 
     uninstall  removes synlinks from Xcode File Templates Folder
 
-    $ ./installer ungrade
+    $ ./installer upgrade
 
     upgrade    clobbers existing setup and installs fresh from git
 
