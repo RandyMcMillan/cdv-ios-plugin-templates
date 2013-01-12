@@ -1,5 +1,4 @@
 #Cordova iOS Xcode Plugin Templates
-dfvdfv
 
 
 
