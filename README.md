@@ -1,13 +1,18 @@
-#Cordova iOS Xcode Plugin Templates
+Apache Cordova iOS Plugin Templates
+===
+
+![image](https://raw.github.com/RandyMcMillan/cdv-ios-plugin-templates/master/ScreenShots/ScreenShot.png)
 
 
 
 ###Installation:
 
-###`$ git clone https://github.com/RandyMcMillan/cdv-ios-plugin-templates.git`
+####`$ git clone https://github.com/RandyMcMillan/cdv-ios-plugin-templates.git`
 
-###`$ ./installer install`
+####`$ ./installer install`
 
+
+![image](https://raw.github.com/RandyMcMillan/cdv-ios-plugin-templates/master/ScreenShots/ScreenShot5.png)
 
 ###Commands:
 
@@ -22,7 +27,7 @@
 <br>
 
 ###`$ ./installer upgrade`
-- pulls from repos and reinitializes submodules. 
+- pulls from repos and reinitializes submodules.
 <br>
 <br>
 
@@ -35,3 +40,10 @@
 - Open http://randymcmillan.github.com/cdv-ios-plugin-templates/ in browser. 
 <br>
 <br>
+
+
+
+
+NOTES: 
+
+
