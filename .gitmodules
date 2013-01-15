@@ -16,3 +16,6 @@
 [submodule "CDVSMSComposer"]
 	path = CDVSMSComposer
 	url = https://github.com/RandyMcMillan/CDVSMSComposer.git
+[submodule "CDVCalendar"]
+	path = CDVCalendar
+	url = https://github.com/RandyMcMillan/CDVCalendar.git
