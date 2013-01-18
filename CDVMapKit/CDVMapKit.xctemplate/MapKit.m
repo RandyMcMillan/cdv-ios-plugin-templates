@@ -7,7 +7,7 @@
 #import "CDVAnnotation.h"
 #import "AsyncImageView.h"
 
-    #import <Cordova/JSONKit.h>
+#import <Cordova/JSONKit.h>
 
 @implementation MapKitView
 
@@ -28,39 +28,31 @@
  */
 - (void)createView
 {
-    
-    CGRect newRectangle1 = CGRectMake([[self viewController] view].bounds.origin.x, [[self viewController] view].bounds.origin.y, [[self viewController] view].bounds.size.width, [[self viewController] view].bounds.size.height/2);
-	self.childView = [[UIView alloc] initWithFrame:newRectangle1];
-    self.mapView = [[MKMapView alloc] initWithFrame:newRectangle1];
+	self.childView = [[UIView alloc] init];
+    self.mapView = [[MKMapView alloc] init];
     [self.mapView sizeToFit];
     self.mapView.delegate = self;
     self.mapView.multipleTouchEnabled   = YES;
     self.mapView.autoresizesSubviews    = YES;
     self.mapView.userInteractionEnabled = YES;
 	self.mapView.showsUserLocation = YES;
-    self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.childView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	
-	self.imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.imageButton setFrame:CGRectMake(20, 20, 20, 20)];
+	self.imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	
 	[self.childView addSubview:self.mapView];
 	[self.childView addSubview:self.imageButton];
-    //self.childView.bounds = [[self viewController] view].bounds;
-    //self.childView.center = [[self viewController] view].center;
+    
 	[ [ [ self viewController ] view ] addSubview:self.childView];
-    //CGRect newRectangle2 = CGRectMake(0, 0, 100, 200);
-    //[ [ [ self viewController ] view ] setBounds:newRectangle2];
-	//[ [ [ self viewController ] view ] sendSubviewToBack:self.webView];
-
-
 }
 
-- (void)mapView:(MKMapView *)theMapView regionDidChangeAnimated: (BOOL)animated 
-{ 
-    float currentLat = theMapView.region.center.latitude; 
-    float currentLon = theMapView.region.center.longitude; 
-    float latitudeDelta = theMapView.region.span.latitudeDelta; 
-    float longitudeDelta = theMapView.region.span.longitudeDelta; 
+- (void)mapView:(MKMapView *)theMapView regionDidChangeAnimated: (BOOL)animated
+{
+    float currentLat = theMapView.region.center.latitude;
+    float currentLon = theMapView.region.center.longitude;
+    float latitudeDelta = theMapView.region.span.latitudeDelta;
+    float longitudeDelta = theMapView.region.span.longitudeDelta;
     
     NSString* jsString = nil;
 	jsString = [[NSString alloc] initWithFormat:@"geo.onMapMove(\'%f','%f','%f','%f\');", currentLat,currentLon,latitudeDelta,longitudeDelta];
@@ -74,7 +66,7 @@
 	{
 		[ self.mapView removeAnnotations:mapView.annotations];
 		[ self.mapView removeFromSuperview];
-
+        
 		mapView = nil;
 	}
 	if(self.imageButton)
@@ -94,15 +86,15 @@
 
 - (void)clearMapPins:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 {
-  [self.mapView removeAnnotations:self.mapView.annotations];
+    [self.mapView removeAnnotations:self.mapView.annotations];
 }
 
 - (void)addMapPins:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 {
-
-  NSArray *pins = [[arguments objectAtIndex:0] objectFromJSONString];
+    
+    NSArray *pins = [[arguments objectAtIndex:0] cdvjk_objectFromJSONString];
 	
-  for (int y = 0; y < pins.count; y++) 
+    for (int y = 0; y < pins.count; y++)
 	{
 		NSDictionary *pinData = [pins objectAtIndex:y];
 		CLLocationCoordinate2D pinCoord = { [[pinData objectForKey:@"lat"] floatValue] , [[pinData objectForKey:@"lon"] floatValue] };
@@ -112,11 +104,11 @@
 		NSString *pinColor=[[pinData valueForKey:@"pinColor"] description];
 		NSInteger index=[[pinData valueForKey:@"index"] integerValue];
 		BOOL selected = [[pinData valueForKey:@"selected"] boolValue];
-
+        
 		CDVAnnotation *annotation = [[CDVAnnotation alloc] initWithCoordinate:pinCoord index:index title:title subTitle:subTitle imageURL:imageURL];
 		annotation.pinColor=pinColor;
 		annotation.selected = selected;
-
+        
 		[self.mapView addAnnotation:annotation];
 		[annotation release];
 	}
@@ -126,8 +118,8 @@
  * Set annotations and mapview settings
  */
 - (void)setMapData:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;\
-{	
-    if (!self.mapView) 
+{
+    if (!self.mapView)
 	{
 		[self createView];
 	}
@@ -135,16 +127,16 @@
 	// defaults
     CGFloat height = 480.0f;
     CGFloat offsetTop = 0.0f;
-		
-	if ([options objectForKey:@"height"]) 
+    
+	if ([options objectForKey:@"height"])
 	{
 		height=[[options objectForKey:@"height"] floatValue];
 	}
-    if ([options objectForKey:@"offsetTop"]) 
+    if ([options objectForKey:@"offsetTop"])
 	{
 		offsetTop=[[options objectForKey:@"offsetTop"] floatValue];
 	}
-	if ([options objectForKey:@"buttonCallback"]) 
+	if ([options objectForKey:@"buttonCallback"])
 	{
 		self.buttonCallback=[[options objectForKey:@"buttonCallback"] description];
 	}
@@ -155,19 +147,19 @@
 	CGRect webViewBounds = self.webView.bounds;
 	
 	CGRect mapBounds;
-  mapBounds = CGRectMake(
-    webViewBounds.origin.x,
-    webViewBounds.origin.y + (offsetTop / 2),
-    webViewBounds.size.width,
-    webViewBounds.origin.y + height
-  );
-		
+    mapBounds = CGRectMake(
+                           webViewBounds.origin.x,
+                           webViewBounds.origin.y + (offsetTop / 2),
+                           webViewBounds.size.width,
+                           webViewBounds.origin.y + height
+                           );
+    
 	[self.childView setFrame:mapBounds];
 	[self.mapView setFrame:mapBounds];
 	
-	MKCoordinateRegion region=[ self.mapView regionThatFits: MKCoordinateRegionMakeWithDistance(centerCoord, 
-																						   diameter*(height / webViewBounds.size.width), 
-																						   diameter*(height / webViewBounds.size.width))];
+	MKCoordinateRegion region=[ self.mapView regionThatFits: MKCoordinateRegionMakeWithDistance(centerCoord,
+                                                                                                diameter*(height / webViewBounds.size.width),
+                                                                                                diameter*(height / webViewBounds.size.width))];
 	[self.mapView setRegion:region animated:YES];
 	
 	CGRect frame = CGRectMake(285.0,12.0,  29.0, 29.0);
@@ -186,7 +178,7 @@
 
 - (void)showMap:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-	if (!self.mapView) 
+	if (!self.mapView)
 	{
 		[self createView];
 	}
@@ -197,7 +189,7 @@
 
 - (void)hideMap:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
-    if (!self.mapView || self.childView.hidden==YES) 
+    if (!self.mapView || self.childView.hidden==YES)
 	{
 		return;
 	}
@@ -207,20 +199,20 @@
 }
 
 - (MKAnnotationView *) mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>) annotation {
-  
-  if ([annotation class] != CDVAnnotation.class) {
-    return nil;
-  }
-
+    
+    if ([annotation class] != CDVAnnotation.class) {
+        return nil;
+    }
+    
 	CDVAnnotation *phAnnotation=(CDVAnnotation *) annotation;
 	NSString *identifier=[NSString stringWithFormat:@"INDEX[%i]", phAnnotation.index];
-
+    
 	MKPinAnnotationView *annView = (MKPinAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-
+    
 	if (annView!=nil) return annView;
-
+    
 	annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-
+    
 	annView.animatesDrop=YES;
 	annView.canShowCallout = YES;
 	if ([phAnnotation.pinColor isEqualToString:@"green"])
@@ -229,7 +221,7 @@
 		annView.pinColor = MKPinAnnotationColorPurple;
 	else
 		annView.pinColor = MKPinAnnotationColorRed;
-
+    
 	AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:CGRectMake(0,0, 50, 32)] autorelease];
 	asyncImage.tag = 999;
 	if (phAnnotation.imageURL)
@@ -237,18 +229,18 @@
 		NSURL *url = [[NSURL alloc] initWithString:phAnnotation.imageURL];
 		[asyncImage loadImageFromURL:url];
 		[ url release ];
-	} 
-	else 
+	}
+	else
 	{
 		[asyncImage loadDefaultImage];
 	}
-
+    
 	annView.leftCalloutAccessoryView = asyncImage;
-
-
+    
+    
 	if (self.buttonCallback && phAnnotation.index!=-1)
 	{
-
+        
 		UIButton *myDetailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 		myDetailButton.frame = CGRectMake(0, 0, 23, 23);
 		myDetailButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -256,24 +248,24 @@
 		myDetailButton.tag=phAnnotation.index;
 		annView.rightCalloutAccessoryView = myDetailButton;
 		[ myDetailButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-
+        
 	}
-
+    
 	if(phAnnotation.selected)
 	{
 		[self performSelector:@selector(openAnnotation:) withObject:phAnnotation afterDelay:1.0];
 	}
-
+    
 	return [annView autorelease];
 }
 
 -(void)openAnnotation:(id <MKAnnotation>) annotation
 {
-	[ self.mapView selectAnnotation:annotation animated:YES];  
+	[ self.mapView selectAnnotation:annotation animated:YES];
 	
 }
 
-- (void) checkButtonTapped:(id)button 
+- (void) checkButtonTapped:(id)button
 {
 	UIButton *tmpButton = button;
 	NSString* jsString = [NSString stringWithFormat:@"%@(\"%i\");", self.buttonCallback, tmpButton.tag];
