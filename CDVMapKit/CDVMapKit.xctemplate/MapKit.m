@@ -78,16 +78,6 @@
 	
 	self.imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.imageButton.autoresizingMask= (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin);
-	
-    //animation
-    /*
-    [UIView transitionWithView:childView
-                      duration:0.2
-                       options:UIViewAnimationOptionTransitionFlipFromLeft
-                    animations:^{ [childView removeFromSuperview]; [childView addSubview:mapView]; }
-                    completion:NULL];
-    */
-    
     
 	[self.childView addSubview:self.mapView];
 	[self.childView addSubview:self.imageButton];
@@ -210,7 +200,7 @@
                                                                                                 diameter*(height / webViewBounds.size.width))];
 	[self.mapView setRegion:region animated:YES];
 	
-	CGRect frame = CGRectMake([UIScreen mainScreen].bounds.size.width-80,12.0,  59.0, 59.0);
+	CGRect frame = CGRectMake(webViewBounds.size.width-80,12.0,  59.0, 59.0);
     [self.imageButton setAutoresizingMask:(UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin)];
     //	[ self.imageButton setImage:[UIImage imageNamed:@"www/map-close-button.png"] forState:UIControlStateNormal];
 	[ self.imageButton setImage:[UIImage imageNamed:@"map-close-button.png"] forState:UIControlStateNormal];
@@ -238,7 +228,7 @@
                            );
    
  
-/*
+
     //animation
      [UIView transitionWithView:childView
      duration:0.2
@@ -250,7 +240,7 @@
  
      }
      completion:NULL];
-
+ /*
     
     CGRect newWebViewBounds;
     newWebViewBounds = CGRectMake(
