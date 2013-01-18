@@ -40,7 +40,18 @@
 	self.childView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	
 	self.imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+
 	
+    //animation
+    /*
+    [UIView transitionWithView:childView
+                      duration:0.2
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                    animations:^{ [childView removeFromSuperview]; [childView addSubview:mapView]; }
+                    completion:NULL];
+    */
+    
+    
 	[self.childView addSubview:self.mapView];
 	[self.childView addSubview:self.imageButton];
     
@@ -156,13 +167,15 @@
     
 	[self.childView setFrame:mapBounds];
 	[self.mapView setFrame:mapBounds];
+
 	
+    
 	MKCoordinateRegion region=[ self.mapView regionThatFits: MKCoordinateRegionMakeWithDistance(centerCoord,
                                                                                                 diameter*(height / webViewBounds.size.width),
                                                                                                 diameter*(height / webViewBounds.size.width))];
 	[self.mapView setRegion:region animated:YES];
 	
-	CGRect frame = CGRectMake(285.0,12.0,  29.0, 29.0);
+	CGRect frame = CGRectMake(285.0,12.0,  59.0, 59.0);
 	
 	[ self.imageButton setImage:[UIImage imageNamed:@"www/map-close-button.png"] forState:UIControlStateNormal];
 	[ self.imageButton setFrame:frame];
