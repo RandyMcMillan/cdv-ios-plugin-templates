@@ -168,6 +168,8 @@
     if (!self.mapView)
 	{
 		[self createView];
+        [self resizeAll];
+
 	}
 	
 	// defaults
@@ -193,7 +195,7 @@
  
 	CGRect webViewBounds = self.webView.bounds;
 	
-    [self resizeAll];
+    //[self resizeAll];
     
 	MKCoordinateRegion region=[ self.mapView regionThatFits: MKCoordinateRegionMakeWithDistance(centerCoord,
                                                                                                 diameter*(height / webViewBounds.size.width),
@@ -240,7 +242,6 @@
  
      }
      completion:NULL];
- /*
     
     CGRect newWebViewBounds;
     newWebViewBounds = CGRectMake(
@@ -252,7 +253,6 @@
  
     
     [self.webView setFrame:newWebViewBounds];
- */
     
 	[self.childView setFrame:mapBounds];
 	[self.mapView setFrame:mapBounds];
