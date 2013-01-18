@@ -61,12 +61,17 @@
 - (void)mapView:(MKMapView *)theMapView regionDidChangeAnimated: (BOOL)animated
 {
     float currentLat = theMapView.region.center.latitude;
+    NSLog(@"%f",currentLat);
     float currentLon = theMapView.region.center.longitude;
+    NSLog(@"%f",currentLon);
     float latitudeDelta = theMapView.region.span.latitudeDelta;
+    NSLog(@"%f",latitudeDelta);
     float longitudeDelta = theMapView.region.span.longitudeDelta;
+    NSLog(@"%f",longitudeDelta);
     
     NSString* jsString = nil;
-	jsString = [[NSString alloc] initWithFormat:@"geo.onMapMove(\'%f','%f','%f','%f\');", currentLat,currentLon,latitudeDelta,longitudeDelta];
+	//jsString = [[NSString alloc] initWithFormat:@"geo.onMapMove(\'%f','%f','%f','%f\');", currentLat,currentLon,latitudeDelta,longitudeDelta];
+	jsString = [[NSString alloc] initWithFormat:@"console.log('%f '+'%f '+'%f '+'%f ');", currentLat,currentLon,latitudeDelta,longitudeDelta];
 	[self.webView stringByEvaluatingJavaScriptFromString:jsString];
 	[jsString autorelease];
 }
