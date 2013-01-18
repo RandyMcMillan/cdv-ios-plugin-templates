@@ -70,10 +70,11 @@
     self.mapView.delegate = self;
     self.mapView.multipleTouchEnabled   = YES;
     self.mapView.autoresizesSubviews    = YES;
+    self.childView.autoresizesSubviews    = YES;
     self.mapView.userInteractionEnabled = YES;
 	self.mapView.showsUserLocation = YES;
 	self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.childView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	self.childView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	
 	self.imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
@@ -208,8 +209,35 @@
                            webViewBounds.size.width,
                            webViewBounds.origin.y + height
                            );
+   
+ 
     
-	[self.childView setFrame:mapBounds];
+    //animation
+     [UIView transitionWithView:childView
+     duration:0.2
+     options:UIViewAnimationOptionBeginFromCurrentState
+     animations:^{
+    
+         [self.childView setFrame:mapBounds];
+         [self.mapView setFrame:mapBounds];
+ 
+     }
+     completion:NULL];
+
+    
+    CGRect newWebViewBounds;
+    newWebViewBounds = CGRectMake(
+                                  webViewBounds.origin.x,
+                                  webViewBounds.origin.y+mapBounds.size.height,
+                                  webViewBounds.size.width,
+                                  webViewBounds.size.height-mapBounds.size.height
+                                  );
+ 
+    
+    [self.webView setFrame:newWebViewBounds];
+ 
+    
+	//[self.childView setFrame:mapBounds];
 	[self.mapView setFrame:mapBounds];
 
 	
