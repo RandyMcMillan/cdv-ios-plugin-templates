@@ -77,7 +77,7 @@
 	self.childView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	
 	self.imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-
+    self.imageButton.autoresizingMask= (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin);
 	
     //animation
     /*
@@ -199,7 +199,34 @@
 	
 	CLLocationCoordinate2D centerCoord = { [[options objectForKey:@"lat"] floatValue] , [[options objectForKey:@"lon"] floatValue] };
 	CLLocationDistance diameter = [[options objectForKey:@"diameter"] floatValue];
+	 
+ 
+	CGRect webViewBounds = self.webView.bounds;
 	
+    [self resizeAll];
+    
+	MKCoordinateRegion region=[ self.mapView regionThatFits: MKCoordinateRegionMakeWithDistance(centerCoord,
+                                                                                                diameter*(height / webViewBounds.size.width),
+                                                                                                diameter*(height / webViewBounds.size.width))];
+	[self.mapView setRegion:region animated:YES];
+	
+	CGRect frame = CGRectMake([UIScreen mainScreen].bounds.size.width-80,12.0,  59.0, 59.0);
+    [self.imageButton setAutoresizingMask:(UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin)];
+    //	[ self.imageButton setImage:[UIImage imageNamed:@"www/map-close-button.png"] forState:UIControlStateNormal];
+	[ self.imageButton setImage:[UIImage imageNamed:@"map-close-button.png"] forState:UIControlStateNormal];
+	[ self.imageButton setFrame:frame];
+	[ self.imageButton addTarget:self action:@selector(closeButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+
+}
+
+- (void) resizeAll{
+
+    // defaults
+    CGFloat height = 480.0f;
+    CGFloat offsetTop = 0.0f;
+   
 	CGRect webViewBounds = self.webView.bounds;
 	
 	CGRect mapBounds;
@@ -211,7 +238,7 @@
                            );
    
  
-    
+/*
     //animation
      [UIView transitionWithView:childView
      duration:0.2
@@ -235,26 +262,12 @@
  
     
     [self.webView setFrame:newWebViewBounds];
- 
+ */
     
-	//[self.childView setFrame:mapBounds];
+	[self.childView setFrame:mapBounds];
 	[self.mapView setFrame:mapBounds];
 
-	
-    
-	MKCoordinateRegion region=[ self.mapView regionThatFits: MKCoordinateRegionMakeWithDistance(centerCoord,
-                                                                                                diameter*(height / webViewBounds.size.width),
-                                                                                                diameter*(height / webViewBounds.size.width))];
-	[self.mapView setRegion:region animated:YES];
-	
-	CGRect frame = CGRectMake([UIScreen mainScreen].bounds.size.width-80,12.0,  59.0, 59.0);
-    [self.imageButton setAutoresizingMask:(UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin)];
-    //	[ self.imageButton setImage:[UIImage imageNamed:@"www/map-close-button.png"] forState:UIControlStateNormal];
-	[ self.imageButton setImage:[UIImage imageNamed:@"map-close-button.png"] forState:UIControlStateNormal];
-	[ self.imageButton setFrame:frame];
-	[ self.imageButton addTarget:self action:@selector(closeButton:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
+
 
 }
 
