@@ -28,6 +28,42 @@
  */
 - (void)createView
 {
+    
+    
+    NSString	*systemVersion		= [[UIDevice currentDevice] systemVersion];
+	BOOL		isLessThaniOS4		= ([systemVersion compare:@"4.0" options:NSNumericSearch] == NSOrderedAscending);
+	BOOL		isGreaterThaniOS4	= ([systemVersion compare:@"4.0" options:NSNumericSearch] == NSOrderedDescending);
+	BOOL		isLessThaniOS5		= ([systemVersion compare:@"5.0" options:NSNumericSearch] == NSOrderedAscending);
+    BOOL		isEqualToiOS5		= ([systemVersion compare:@"5.0" options:NSNumericSearch] == NSOrderedSame);
+	BOOL		isGreaterThaniOS5	= ([systemVersion compare:@"5.0" options:NSNumericSearch] == NSOrderedDescending);
+	BOOL		isLessThaniOS6		= ([systemVersion compare:@"6.0" options:NSNumericSearch] == NSOrderedAscending);
+	BOOL		isEqualToiOS6		= ([systemVersion compare:@"6.0" options:NSNumericSearch] == NSOrderedSame);
+	BOOL		isGreaterThaniOS6	= ([systemVersion compare:@"6.0" options:NSNumericSearch] == NSOrderedDescending);
+    
+	if (isLessThaniOS4 && isLessThaniOS5) {}
+    
+	if (isGreaterThaniOS4 && isLessThaniOS5) {}
+   
+   
+    
+	if (isEqualToiOS5 | isGreaterThaniOS5 && isLessThaniOS6) {
+    
+    if (isEqualToiOS5) {
+		NSLog(@"isEqualToiOS5");
+	} 
+    
+    }
+    
+	if (isEqualToiOS6) {
+		NSLog(@"isEqualToiOS6");
+	}
+    
+	if (isGreaterThaniOS6) {
+		NSLog(@"isGreaterThaniOS6");
+	}
+
+    
+    
 	self.childView = [[UIView alloc] init];
     self.mapView = [[MKMapView alloc] init];
     [self.mapView sizeToFit];
@@ -39,7 +75,7 @@
 	self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.childView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	
-	self.imageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	self.imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
 	
     //animation
@@ -56,6 +92,8 @@
 	[self.childView addSubview:self.imageButton];
     
 	[ [ [ self viewController ] view ] addSubview:self.childView];
+    
+    
 }
 
 - (void)mapView:(MKMapView *)theMapView regionDidChangeAnimated: (BOOL)animated
@@ -135,6 +173,7 @@
  */
 - (void)setMapData:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;\
 {
+    
     if (!self.mapView)
 	{
 		[self createView];
@@ -180,11 +219,15 @@
                                                                                                 diameter*(height / webViewBounds.size.width))];
 	[self.mapView setRegion:region animated:YES];
 	
-	CGRect frame = CGRectMake(285.0,12.0,  59.0, 59.0);
-	
-	[ self.imageButton setImage:[UIImage imageNamed:@"www/map-close-button.png"] forState:UIControlStateNormal];
+	CGRect frame = CGRectMake([UIScreen mainScreen].bounds.size.width-80,12.0,  59.0, 59.0);
+    [self.imageButton setAutoresizingMask:(UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin)];
+    //	[ self.imageButton setImage:[UIImage imageNamed:@"www/map-close-button.png"] forState:UIControlStateNormal];
+	[ self.imageButton setImage:[UIImage imageNamed:@"map-close-button.png"] forState:UIControlStateNormal];
 	[ self.imageButton setFrame:frame];
 	[ self.imageButton addTarget:self action:@selector(closeButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+
 }
 
 - (void) closeButton:(id)button
