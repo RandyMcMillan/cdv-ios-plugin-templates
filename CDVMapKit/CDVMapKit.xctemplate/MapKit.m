@@ -168,9 +168,14 @@
     if (!self.mapView)
 	{
 		[self createView];
-        [self resizeAll];
 
 	}
+    
+    if (self.mapView.bounds.size.height < self.webView.bounds.size.height){
+    
+        [self resizeAll];
+    
+    }
 	
 	// defaults
     CGFloat height = 480.0f;
@@ -218,32 +223,21 @@
     // defaults
     CGFloat height = 480.0f;
     CGFloat offsetTop = 0.0f;
-   
+
+    CGRect viewBounds = [self viewController].view.bounds;
 	CGRect webViewBounds = self.webView.bounds;
 	
 	CGRect mapBounds;
     mapBounds = CGRectMake(
-                           webViewBounds.origin.x,
-                           webViewBounds.origin.y + (offsetTop / 2),
-                           webViewBounds.size.width,
-                           webViewBounds.origin.y + height
+                           viewBounds.origin.x,
+                           viewBounds.origin.y + (offsetTop / 2),
+                           viewBounds.size.width,
+                           viewBounds.origin.y + height
                            );
    
  
-
-    //animation
-     [UIView transitionWithView:childView
-     duration:0.2
-     options:UIViewAnimationOptionBeginFromCurrentState
-     animations:^{
     
-         [self.childView setFrame:mapBounds];
-         [self.mapView setFrame:mapBounds];
- 
-     }
-     completion:NULL];
-    
-    CGRect newWebViewBounds;
+     CGRect newWebViewBounds;
     newWebViewBounds = CGRectMake(
                                   webViewBounds.origin.x,
                                   webViewBounds.origin.y+mapBounds.size.height,
@@ -251,11 +245,40 @@
                                   webViewBounds.size.height-mapBounds.size.height
                                   );
  
+
+    //animation
+     [UIView transitionWithView:self.childView
+     duration:0.2
+     options:UIViewAnimationOptionBeginFromCurrentState
+     animations:^{
     
-    [self.webView setFrame:newWebViewBounds];
+         
+         [self.childView setFrame:mapBounds];
+         [self.mapView setFrame:mapBounds];
+         
+         
+ 
+     }
+     completion:NULL];
+   
     
-	[self.childView setFrame:mapBounds];
-	[self.mapView setFrame:mapBounds];
+    
+  
+    
+    //animation
+    [UIView transitionWithView:self.webView
+                      duration:0.2
+                       options:UIViewAnimationOptionBeginFromCurrentState
+                    animations:^{
+                        
+                        
+                        // [self.webView setFrame:newWebViewBounds];
+                        
+                    }
+                    completion:NULL];
+
+    
+    [self.imageButton setHidden:FALSE];
 
 
 
@@ -274,7 +297,10 @@
 	{
 		[self createView];
 	}
-	self.childView.hidden = NO;
+    
+    [self resizeAll];
+    //[self.imageButton setHidden:FALSE];
+	//self.childView.hidden = NO;
 	self.mapView.showsUserLocation = YES;
 }
 
@@ -285,9 +311,32 @@
 	{
 		return;
 	}
+    
+    
+    //[self resizeAll];
+    
+    
+    //animation
+    [UIView transitionWithView:self.childView
+                      duration:0.2
+                       options:UIViewAnimationOptionBeginFromCurrentState
+                    animations:^{
+                        
+                        
+                        [self.childView setFrame:CGRectZero];
+                        [self.mapView setFrame:CGRectZero];
+                        [self.imageButton setHidden:TRUE];
+                        
+                        
+                    }
+                    completion:NULL];
+
+    
+    
+    
 	// disable location services, if we no longer need it.
 	self.mapView.showsUserLocation = NO;
-	self.childView.hidden = YES;
+	//self.childView.hidden = YES;
 }
 
 - (MKAnnotationView *) mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>) annotation {
