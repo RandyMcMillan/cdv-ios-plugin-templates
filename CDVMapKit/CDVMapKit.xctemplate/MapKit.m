@@ -272,7 +272,7 @@
                     animations:^{
                         
                         
-                        // [self.webView setFrame:newWebViewBounds];
+                         [self.webView setFrame:newWebViewBounds];
                         
                     }
                     completion:NULL];
@@ -330,6 +330,21 @@
                         
                     }
                     completion:NULL];
+
+    
+    //animation
+    [UIView transitionWithView:self.webView
+                      duration:0.2
+                       options:UIViewAnimationOptionBeginFromCurrentState
+                    animations:^{
+                        
+                        
+                       self.webView.bounds =  [self viewController].view.bounds;
+                        [self.webView setFrame:[self viewController].view.bounds];
+                        
+                    }
+                    completion:NULL];
+    
 
     
     
