@@ -74,7 +74,7 @@
     self.mapView.userInteractionEnabled = YES;
 	self.mapView.showsUserLocation = YES;
 	self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.childView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	self.childView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	
 	self.imageButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.imageButton.autoresizingMask= (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin);
@@ -255,8 +255,8 @@
      animations:^{
     
          
-         [self.childView setFrame:mapBounds];
-         [self.mapView setFrame:mapBounds];
+         [self.childView setFrame:viewBounds];//try mapbounds
+         [self.mapView setFrame:viewBounds];//try mapbounds
          
          
  
