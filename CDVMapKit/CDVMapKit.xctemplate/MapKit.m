@@ -171,7 +171,7 @@
 
 	}
     
-    if (self.mapView.bounds.size.height < self.webView.bounds.size.height){
+    if (self.mapView.bounds.size.height < 0.1){
     
         [self resizeAll];
     
@@ -250,7 +250,7 @@
 
     //animation
      [UIView transitionWithView:self.childView
-     duration:0.2
+     duration:0.3
      options:UIViewAnimationOptionBeginFromCurrentState
      animations:^{
     
@@ -261,23 +261,29 @@
          
  
      }
-     completion:NULL];
+                     completion:^ (BOOL finished) {
+                     
+                     
+                      //animation
+    [UIView transitionWithView:self.webView
+                      duration:0.0
+                       options:UIViewAnimationOptionBeginFromCurrentState
+                    animations:^{
+                        
+                        
+                        [self.webView setFrame:newWebViewBounds];
+                        
+                    }
+                    completion:^ (BOOL finished) {}];
+                     
+                     
+                     }];
    
     
     
   
     
-    //animation
-    [UIView transitionWithView:self.webView
-                      duration:0.2
-                       options:UIViewAnimationOptionBeginFromCurrentState
-                    animations:^{
-                        
-                        
-                         [self.webView setFrame:newWebViewBounds];
-                        
-                    }
-                    completion:NULL];
+  
 
     
     [self.imageButton setHidden:FALSE];
@@ -322,9 +328,24 @@
     //[self resizeAll];
     
     
+      
     //animation
+    [UIView transitionWithView:self.webView
+                      duration:0.0
+                       options:UIViewAnimationOptionBeginFromCurrentState
+                    animations:^{
+                        
+                        
+                       self.webView.bounds =  [self viewController].view.bounds;
+                        [self.webView setFrame:[self viewController].view.bounds];
+                        
+                    }
+                    completion:^ (BOOL finished) {
+                    
+                    
+                     //animation
     [UIView transitionWithView:self.childView
-                      duration:0.2
+                      duration:0.3
                        options:UIViewAnimationOptionBeginFromCurrentState
                     animations:^{
                         
@@ -335,21 +356,13 @@
                         
                         
                     }
-                    completion:NULL];
+                    completion:^ (BOOL finished) {}];
 
-    
-    //animation
-    [UIView transitionWithView:self.webView
-                      duration:0.2
-                       options:UIViewAnimationOptionBeginFromCurrentState
-                    animations:^{
-                        
-                        
-                       self.webView.bounds =  [self viewController].view.bounds;
-                        [self.webView setFrame:[self viewController].view.bounds];
-                        
-                    }
-                    completion:NULL];
+ 
+                    
+                    
+                    
+                    }];
     
 
     
