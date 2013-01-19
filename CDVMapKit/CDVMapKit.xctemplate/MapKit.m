@@ -220,6 +220,8 @@
 
 - (void) resizeAll{
 
+    if (self.childView.bounds.size.width < 1) {
+
     // defaults
     CGFloat height = 480.0f;
     CGFloat offsetTop = 0.0f;
@@ -280,7 +282,7 @@
     
     [self.imageButton setHidden:FALSE];
 
-
+    }
 
 }
 
@@ -293,6 +295,9 @@
 
 - (void)showMap:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options
 {
+    
+        
+    
 	if (!self.mapView)
 	{
 		[self createView];
@@ -302,6 +307,7 @@
     //[self.imageButton setHidden:FALSE];
 	//self.childView.hidden = NO;
 	self.mapView.showsUserLocation = YES;
+    
 }
 
 
