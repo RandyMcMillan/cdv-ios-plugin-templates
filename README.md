@@ -4,7 +4,6 @@ Apache Cordova iOS Plugin Templates
 ![image](https://raw.github.com/RandyMcMillan/cdv-ios-plugin-templates/master/ScreenShots/ScreenShot.png)
 
 
-
 ###Installation:
 
 ####`$ git clone https://github.com/RandyMcMillan/cdv-ios-plugin-templates.git`
