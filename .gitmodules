@@ -19,6 +19,3 @@
 [submodule "CDVCalendar"]
 	path = CDVCalendar
 	url = https://github.com/RandyMcMillan/CDVCalendar.git
-[submodule "CDVNativeTouch"]
-	path = CDVNativeTouch
-	url = ./CDVNativeTouch
