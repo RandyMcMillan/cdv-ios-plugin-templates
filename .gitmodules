@@ -22,3 +22,6 @@
 [submodule "CDVOGLView"]
 	path = CDVOGLView
 	url = https://github.com/RandyMcMillan/CDVOGLView.git
+[submodule "CDVGeoCoder"]
+	path = CDVGeoCoder
+	url = https://github.com/RandyMcMillan/CDVGeoCoder.git
