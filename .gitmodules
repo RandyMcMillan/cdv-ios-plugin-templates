@@ -19,3 +19,6 @@
 [submodule "CDVCalendar"]
 	path = CDVCalendar
 	url = https://github.com/RandyMcMillan/CDVCalendar.git
+[submodule "CDVOGLView"]
+	path = CDVOGLView
+	url = https://github.com/RandyMcMillan/CDVOGLView.git
