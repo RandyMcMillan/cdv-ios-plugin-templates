@@ -1,5 +1,16 @@
-Apache Cordova iOS Plugin Templates
-===
+<link rel="stylesheet" type="text/css" href="http://cordova.apache.org/master.css">
+
+<div class="grid leadin" style="">
+    <div class="wrap">
+        <img src="http://cordova.apache.org/images/cordova_bot.png" alt=""/>
+        <ul class="text-block" style="font-size:280%;">
+            <li><strong>Cordova iOS </strong><div class="t_ext-block" style="font-size:60%;">Plugin Templates</div></li>
+        </ul>
+
+		
+    </div>
+    
+</div>
 
 ![image](https://raw.github.com/RandyMcMillan/cdv-ios-plugin-templates/master/ScreenShots/ScreenShot.png)
 
@@ -49,5 +60,6 @@ Apache Cordova iOS Plugin Templates
 
 
 NOTES: 
+This repository isn't endorsed or sanctioned by anyone. I am simply sharing my personal experiments and theoretical exercises with others.
 
-
+I'd be interested in seeing your templates. 
