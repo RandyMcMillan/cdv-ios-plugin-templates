@@ -7,8 +7,10 @@ Apache Cordova iOS Plugin Templates
 ###Installation:
 
 ####`$ git clone https://github.com/RandyMcMillan/cdv-ios-plugin-templates.git`
+>Clone the repository to your home folder ~/
 
 ####`$ ./installer install`
+>The installer script creates symlinks to ~/Library/Developer/Xcode/File Templates 
 
 
 ![image](https://raw.github.com/RandyMcMillan/cdv-ios-plugin-templates/master/ScreenShots/ScreenShot5.png)
@@ -22,12 +24,13 @@ Apache Cordova iOS Plugin Templates
 
 ###`$ ./installer uninstall`
 - This removes symlinks
-<br>
+>The repo will remain but the templates will not be visible in Xcode.
 <br>
 
 ###`$ ./installer upgrade`
-- pulls from repos and reinitializes submodules.
-<br>
+- pulls from repo and reinitializes submodules.
+>Simplifies updating the templates for continued usability.<br>
+>As new templates are added they will become visible in the Xcode new file dialogue.
 <br>
 
 ###`$ ./installer help`
