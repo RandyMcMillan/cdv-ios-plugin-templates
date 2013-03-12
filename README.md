@@ -24,11 +24,13 @@ Apache Cordova iOS Plugin Templates
 
 ###`$ ./installer uninstall`
 - This removes symlinks
+
 >The repo will remain but the templates will not be visible in Xcode.
 <br>
 
 ###`$ ./installer upgrade`
 - pulls from repo and reinitializes submodules.
+
 >Simplifies updating the templates for continued usability.<br>
 >As new templates are added they will become visible in the Xcode new file dialogue.
 <br>
