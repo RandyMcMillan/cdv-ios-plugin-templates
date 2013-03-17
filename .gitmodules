@@ -25,3 +25,6 @@
 [submodule "CDVGeoCoder"]
 	path = CDVGeoCoder
 	url = https://github.com/RandyMcMillan/CDVGeoCoder.git
+[submodule "CDVRBVBtns"]
+	path = CDVRBVBtns
+	url = https://github.com/RandyMcMillan/CDVRBVBtns.git
