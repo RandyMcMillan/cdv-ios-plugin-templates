@@ -3,8 +3,8 @@
 <div class="grid leadin" style="">
     <div class="wrap">
         <img src="http://cordova.apache.org/images/cordova_bot.png" alt=""/>
-        <ul class="text-block" style="font-size:280%;">
-            <li><strong>Cordova iOS </strong><div class="t_ext-block" style="font-size:60%;">Plugin Templates</div></li>
+        <ul class="text-block" style="font-size:260%;">
+            <li><strong>Cordova iOS </strong><div class="t_ext-block" style="font-size:60%;"></br>Plugin Templates</div></li>
         </ul>
 
 		
