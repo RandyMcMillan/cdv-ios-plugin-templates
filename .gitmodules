@@ -4,9 +4,9 @@
 [submodule "CDVBrowser"]
 	path = CDVBrowser
 	url = https://github.com/RandyMcMillan/CDVBrowser.git
-[submodule "CDVPDFViewer"]
-	path = CDVPDFViewer
-	url = https://github.com/RandyMcMillan/CDVPDFViewer.git
+[submodule "CDVPDFReader"]
+	path = CDVPDFReader
+	url = https://github.com/RandyMcMillan/CDVPDFReader.git
 [submodule "CDVPlugin"]
 	path = CDVPlugin
 	url = https://github.com/RandyMcMillan/CDVPlugin.git
