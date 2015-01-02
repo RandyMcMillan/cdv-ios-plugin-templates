@@ -28,3 +28,6 @@
 [submodule "CDVRBVBtns"]
 	path = CDVRBVBtns
 	url = https://github.com/RandyMcMillan/CDVRBVBtns.git
+[submodule "CDVPDFViewer"]
+	path = CDVPDFViewer
+	url = https://github.com/RandyMcMillan/CDVPDFViewer.git
