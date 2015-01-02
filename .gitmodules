@@ -7,9 +7,6 @@
 [submodule "CDVPDFReader"]
 	path = CDVPDFReader
 	url = https://github.com/RandyMcMillan/CDVPDFReader.git
-[submodule "CDVPDFViewer"]
-	path = CDVPDFViewer
-	url = https://github.com/RandyMcMillan/CDVPDFViewer.git
 [submodule "CDVPlugin"]
 	path = CDVPlugin
 	url = https://github.com/RandyMcMillan/CDVPlugin.git
